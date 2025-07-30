@@ -1,0 +1,78 @@
+/* Estilos base del carrusel */
+.carousel-container {
+    @apply w-full mt-8 relative z-0;
+}
+
+/* Estilos de las diapositivas */
+.carousel-slide {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300;
+    height: 280px;
+}
+
+.carousel-slide:hover {
+    @apply transform scale-105;
+}
+
+/* Contenedor de imagen */
+.carousel-image-container {
+    @apply h-[160px] overflow-hidden;
+}
+
+.carousel-image {
+    @apply w-full h-full object-cover;
+}
+
+/* Contenedor de contenido */
+.carousel-content {
+    @apply p-4 h-[120px] flex flex-col justify-between;
+}
+
+.carousel-title {
+    @apply text-lg font-semibold text-gray-800 line-clamp-1;
+}
+
+.carousel-description {
+    @apply text-sm text-gray-600 line-clamp-2 mt-2;
+}
+
+/* Badge */
+.carousel-badge {
+    @apply absolute top-2 right-2 px-2 py-1 text-xs font-semibold rounded;
+}
+
+.carousel-badge-new {
+    @apply bg-green-100 text-green-800;
+}
+
+.carousel-badge-popular {
+    @apply bg-blue-100 text-blue-800;
+}
+
+/* Controles de navegación */
+.swiper-pagination {
+    @apply relative mt-4 z-0;
+}
+
+.swiper-pagination-bullet {
+    @apply w-2 h-2 bg-gray-300 opacity-100;
+}
+
+.swiper-pagination-bullet-active {
+    @apply bg-violet-600;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.carousel-slide {
+    animation: fadeIn 0.3s ease-out;
+}

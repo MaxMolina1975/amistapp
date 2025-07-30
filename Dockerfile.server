@@ -1,0 +1,22 @@
+FROM node:18-alpine
+WORKDIR /app
+
+# Copiar primero package.json e instalar dependencias
+COPY package*.json ./server/
+WORKDIR /app/server
+RUN npm install
+
+# Copiar el resto de los archivos
+WORKDIR /app
+COPY . .
+RUN rm -rf ./src
+
+# Configurar variables de entorno
+ENV PORT=3007
+ENV NODE_ENV=production
+
+# Exponer el puerto correcto
+EXPOSE 3007
+
+# Iniciar el servidor
+CMD ["node", "server/index.js"]
