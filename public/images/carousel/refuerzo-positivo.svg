@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="300" viewBox="0 0 500 300">
+  <!-- Fondo del aula -->
+  <rect width="500" height="300" fill="#f5f3ff" />
+  
+  <!-- Pizarra -->
+  <rect x="50" y="30" width="400" height="100" fill="#8b5cf6" rx="5" ry="5" />
+  <rect x="60" y="40" width="380" height="80" fill="#f8fafc" rx="2" ry="2" />
+  
+  <!-- Texto en la pizarra -->
+  <text x="250" y="85" font-family="Arial" font-size="24" fill="#4c1d95" text-anchor="middle" font-weight="bold">Refuerzo Positivo</text>
+  
+  <!-- Profesor -->
+  <circle cx="150" cy="200" r="30" fill="#c4b5fd" />
+  <circle cx="150" cy="170" r="20" fill="#c4b5fd" />
+  
+  <!-- Estudiantes -->
+  <circle cx="250" cy="210" r="25" fill="#ddd6fe" />
+  <circle cx="250" cy="185" r="15" fill="#ddd6fe" />
+  
+  <circle cx="320" cy="200" r="25" fill="#ede9fe" />
+  <circle cx="320" cy="175" r="15" fill="#ede9fe" />
+  
+  <!-- Estrellas de recompensa -->
+  <polygon points="200,150 205,160 215,162 208,170 210,180 200,175 190,180 192,170 185,162 195,160" fill="#fcd34d" />
+  <polygon points="350,140 355,150 365,152 358,160 360,170 350,165 340,170 342,160 335,152 345,150" fill="#fcd34d" />
+  <polygon points="280,130 285,140 295,142 288,150 290,160 280,155 270,160 272,150 265,142 275,140" fill="#fcd34d" />
+  
+  <!-- Mano levantada -->
+  <line x1="250" y1="185" x2="250" y2="150" stroke="#7c3aed" stroke-width="3" />
+  <circle cx="250" cy="145" r="5" fill="#ddd6fe" />
+</svg>

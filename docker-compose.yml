@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  amistapp-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: amistapp-client
+    ports:
+      - "31043:31043"
+    restart: unless-stopped
+    networks:
+      - amistapp-network
+
+  amistapp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: amistapp-server
+    ports:
+      - "3007:3007"
+    restart: unless-stopped
+    networks:
+      - amistapp-network
+
+networks:
+  amistapp-network:
+    driver: bridge

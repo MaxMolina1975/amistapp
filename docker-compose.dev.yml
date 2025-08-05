@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  # Base de datos PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: amistapp-postgres
+    environment:
+      POSTGRES_DB: amistapp
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks:
+      - amistapp-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d amistapp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  amistapp-backend:
+    build:
+      context: ./backend
+      dockerfile: ../Dockerfile.server
+    container_name: amistapp-backend
+    environment:
+      - NODE_ENV=development
+      - DB_TYPE=postgresql
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=amistapp
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres123
+      - PORT=3007
+      - JWT_SECRET=your_super_secret_jwt_key_here
+    ports:
+      - "3007:3007"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - amistapp-network
+    restart: unless-stopped
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/logs:/app/logs
+
+  # Frontend Client
+  amistapp-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    container_name: amistapp-client
+    ports:
+      - "31043:31043"
+    environment:
+      - VITE_API_URL=http://localhost:3007/api
+    depends_on:
+      - amistapp-backend
+    networks:
+      - amistapp-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  amistapp-network:
+    driver: bridge

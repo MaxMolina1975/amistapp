@@ -1,0 +1,29 @@
+.swiper-pagination {
+    position: relative;
+    margin-top: 1rem;
+    z-index: 0;
+}
+
+.swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: #e2e8f0;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background: #8b5cf6;
+}
+
+.swiper-slide {
+    height: auto;
+    z-index: 0;
+}
+
+.swiper-wrapper {
+    z-index: 0;
+}
+
+.swiper {
+    z-index: 0 !important;
+}
